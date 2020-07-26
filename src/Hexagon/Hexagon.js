@@ -123,7 +123,6 @@ class HexagonInner extends Component {
 
 class Hexagon extends Component {
   render() {
-    console.warn("this.props", this.props);
     return (
       <LayoutContext.Consumer>
         {({ layout, points }) => (
