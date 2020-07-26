@@ -5,24 +5,24 @@ import { LayoutContext } from "./Layout";
 
 class PathInner extends Component {
   static propTypes = {
-    start: PropTypes.object,
     end: PropTypes.object,
     layout: PropTypes.object,
+    path: PropTypes.array,
+    start: PropTypes.object,
   };
 
   // TODO Refactor
   getPoints() {
-    const { layout, start, end } = this.props;
-    if (!start || !end) {
-      return "";
-    }
+    const { layout, path, start, end } = this.props;
+    let intersects = path || [];
 
-    // Get all the intersecting hexes between start and end points
-    let distance = HexUtils.distance(start, end);
-    let intersects = [];
-    let step = 1.0 / Math.max(distance, 1);
-    for (let i = 0; i <= distance; i++) {
-      intersects.push(HexUtils.round(HexUtils.hexLerp(start, end, step * i)));
+    if (!path) {
+      // Get all the intersecting hexes between start and end points
+      let distance = HexUtils.distance(start, end);
+      let step = 1.0 / Math.max(distance, 1);
+      for (let i = 0; i <= distance; i++) {
+        intersects.push(HexUtils.round(HexUtils.hexLerp(start, end, step * i)));
+      }
     }
 
     // Construct Path points out of all the intersecting hexes (e.g. M 0,0 L 10,20, L 30,20)
@@ -38,6 +38,13 @@ class PathInner extends Component {
   }
 
   render() {
+    const { path, start, end } = this.props;
+
+    const isEmptyPath = !!path && !path.length;
+    const isPointMissing = !path && (!start || !end);
+    if (isEmptyPath || isPointMissing) {
+      return null;
+    }
     return <path d={this.getPoints()}></path>;
   }
 }
