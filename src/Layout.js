@@ -1,11 +1,35 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Orientation from './models/Orientation';
-import Point from './models/Point';
+import React, { Component, createContext } from "react";
+import PropTypes from "prop-types";
+import Orientation from "./models/Orientation";
+import Point from "./models/Point";
+
+export const LayoutContext = createContext({});
+// LayoutContext.displayName = "HexGridLayout";
+// const LayoutContext = React.createContext("light");
 
 class Layout extends Component {
-  static LAYOUT_FLAT = new Orientation(3.0 / 2.0, 0.0, Math.sqrt(3.0) / 2.0, Math.sqrt(3.0),2.0 / 3.0, 0.0, -1.0 / 3.0, Math.sqrt(3.0) / 3.0, 0.0);
-  static LAYOUT_POINTY = new Orientation(Math.sqrt(3.0), Math.sqrt(3.0) / 2.0, 0.0, 3.0 / 2.0, Math.sqrt(3.0) / 3.0, -1.0 / 3.0, 0.0, 2.0 / 3.0, 0.5);
+  static LAYOUT_FLAT = new Orientation(
+    3.0 / 2.0,
+    0.0,
+    Math.sqrt(3.0) / 2.0,
+    Math.sqrt(3.0),
+    2.0 / 3.0,
+    0.0,
+    -1.0 / 3.0,
+    Math.sqrt(3.0) / 3.0,
+    0.0
+  );
+  static LAYOUT_POINTY = new Orientation(
+    Math.sqrt(3.0),
+    Math.sqrt(3.0) / 2.0,
+    0.0,
+    3.0 / 2.0,
+    Math.sqrt(3.0) / 3.0,
+    -1.0 / 3.0,
+    0.0,
+    2.0 / 3.0,
+    0.5
+  );
 
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -13,36 +37,32 @@ class Layout extends Component {
     flat: PropTypes.bool,
     origin: PropTypes.object,
     size: PropTypes.object,
-    spacing: PropTypes.number
+    spacing: PropTypes.number,
   };
 
   static defaultProps = {
     size: new Point(10, 10),
     flat: true,
     spacing: 1.0,
-    origin: new Point(0, 0)
-  }
-
-  static childContextTypes = {
-    layout: PropTypes.object, // TODO Shape
-    points: PropTypes.string
+    origin: new Point(0, 0),
   };
 
-  getChildContext() {
-    const { children, flat, className, ...rest } = this.props;
-    const orientation = (flat) ? Layout.LAYOUT_FLAT : Layout.LAYOUT_POINTY;
+  getContextValue = () => {
+    const { flat, ...rest } = this.props;
+    const orientation = flat ? Layout.LAYOUT_FLAT : Layout.LAYOUT_POINTY;
     const cornerCoords = this.calculateCoordinates(orientation);
-    const points = cornerCoords.map(point => `${point.x},${point.y}`).join(' ');
+    const points = cornerCoords
+      .map((point) => `${point.x},${point.y}`)
+      .join(" ");
     const childLayout = Object.assign({}, rest, { orientation });
-
     return {
       layout: childLayout,
-      points
+      points,
     };
-  }
+  };
 
   getPointOffset(corner, orientation, size) {
-    let angle = 2.0 * Math.PI * (corner + orientation.startAngle) / 6;
+    let angle = (2.0 * Math.PI * (corner + orientation.startAngle)) / 6;
     return new Point(size.x * Math.cos(angle), size.y * Math.sin(angle));
   }
 
@@ -64,9 +84,9 @@ class Layout extends Component {
   render() {
     const { children, className } = this.props;
     return (
-      <g className={className}>
-        {children}
-      </g>
+      <LayoutContext.Provider value={this.getContextValue()}>
+        <g className={className}>{children}</g>
+      </LayoutContext.Provider>
     );
   }
 }
