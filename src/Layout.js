@@ -1,13 +1,12 @@
-import React, { Component, createContext } from "react";
+import React, { PureComponent, createContext } from "react";
 import PropTypes from "prop-types";
 import Orientation from "./models/Orientation";
 import Point from "./models/Point";
 
 export const LayoutContext = createContext({});
-// LayoutContext.displayName = "HexGridLayout";
-// const LayoutContext = React.createContext("light");
+LayoutContext.displayName = "HexGridLayout";
 
-class Layout extends Component {
+class Layout extends PureComponent {
   static LAYOUT_FLAT = new Orientation(
     3.0 / 2.0,
     0.0,
@@ -34,6 +33,7 @@ class Layout extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
+    draggable: PropTypes.bool,
     flat: PropTypes.bool,
     origin: PropTypes.object,
     size: PropTypes.object,
@@ -41,14 +41,16 @@ class Layout extends Component {
   };
 
   static defaultProps = {
-    size: new Point(10, 10),
+    draggable: true,
     flat: true,
-    spacing: 1.0,
     origin: new Point(0, 0),
+    size: new Point(10, 10),
+    spacing: 1.0,
   };
 
   getContextValue = () => {
-    const { flat, ...rest } = this.props;
+    // Strips `children` and `className` from our layout context value
+    const { children, className, flat, ...rest } = this.props;
     const orientation = flat ? Layout.LAYOUT_FLAT : Layout.LAYOUT_POINTY;
     const cornerCoords = this.calculateCoordinates(orientation);
     const points = cornerCoords

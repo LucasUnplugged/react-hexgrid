@@ -13,9 +13,5 @@ exports[`Path should render correctly 1`] = `
 exports[`Path should render correctly without an end hex 1`] = `
 <g
   className="test2"
->
-  <path
-    d=""
-  />
-</g>
+/>
 `;

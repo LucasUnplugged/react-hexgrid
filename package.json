@@ -1,22 +1,37 @@
 {
-  "name": "react-hexgrid",
+  "_from": "github:LucasUnplugged/react-hexgrid#lcastro/modernization",
+  "_id": "react-hexgrid@1.0.3",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/react-hexgrid",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "LucasUnplugged/react-hexgrid#lcastro/modernization",
+    "rawSpec": "LucasUnplugged/react-hexgrid#lcastro/modernization",
+    "saveSpec": "github:LucasUnplugged/react-hexgrid#lcastro/modernization",
+    "fetchSpec": null,
+    "gitCommittish": "lcastro/modernization"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "github:LucasUnplugged/react-hexgrid#f59826481455c17e8c2ab6cd7155c75d738ee9d6",
+  "_spec": "LucasUnplugged/react-hexgrid#lcastro/modernization",
+  "_where": "/Users/lucas/Sites/gemnix-prototype",
+  "author": {
+    "name": "Hellenic"
+  },
+  "bugs": {
+    "url": "https://github.com/Hellenic/react-hexgrid/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "classnames": "^2.2.5"
+  },
+  "deprecated": false,
   "description": "Interactive hexagon grids with React bindings",
-  "version": "1.0.3",
-  "main": "lib/index.js",
-  "author": "Hellenic",
-  "repository": "Hellenic/react-hexgrid",
-  "license": "MIT",
-  "scripts": {
-    "compile": "babel src/ --out-dir lib",
-    "bundle": "babel src/ --out-file dist/react-hexgrid.js",
-    "prepublish": "npm run compile",
-    "test:watch": "jest --watch --coverage",
-    "test": "jest --coverage"
-  },
-  "peerDependencies": {
-    "react": "^15.0.1",
-    "prop-types": "^15.0.1"
-  },
   "devDependencies": {
     "babel-cli": "*",
     "babel-plugin-transform-es2015-modules-umd": "^6.18.0",
@@ -29,11 +44,28 @@
     "react-dom": "^16.0.0",
     "react-test-renderer": "^16.0.0"
   },
-  "dependencies": {
-    "classnames": "^2.2.5"
-  },
   "files": [
     "lib/",
     "dist/"
-  ]
+  ],
+  "homepage": "https://github.com/Hellenic/react-hexgrid#readme",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "name": "react-hexgrid",
+  "peerDependencies": {
+    "react": "^15.0.1",
+    "prop-types": "^15.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hellenic/react-hexgrid.git"
+  },
+  "scripts": {
+    "bundle": "babel src/ --out-file dist/react-hexgrid.js",
+    "compile": "babel src/ --out-dir lib",
+    "prepublish": "npm run compile",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch --coverage"
+  },
+  "version": "1.0.3"
 }

@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import HexUtils from "./HexUtils";
 import { LayoutContext } from "./Layout";
 
-class PathInner extends Component {
+class PathInner extends PureComponent {
   static propTypes = {
     end: PropTypes.object,
     layout: PropTypes.object,
@@ -49,7 +49,7 @@ class PathInner extends Component {
   }
 }
 
-class Path extends Component {
+class Path extends PureComponent {
   render() {
     return (
       <LayoutContext.Consumer>

@@ -5,16 +5,16 @@ exports[`Hexagon should render correctly with default props 1`] = `
   className="test1"
 >
   <g
-    className="hexagon-group"
-    draggable="true"
-    onClick={[Function]}
-    onDragEnd={[Function]}
-    onDragOver={[Function]}
-    onDragStart={[Function]}
-    onDrop={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseOver={[Function]}
+    className="hexagon-group test"
+    draggable={true}
+    onClick={null}
+    onDragEnd={null}
+    onDragOver={null}
+    onDragStart={null}
+    onDrop={null}
+    onMouseEnter={null}
+    onMouseLeave={null}
+    onMouseOver={null}
     transform="translate(0, 0)"
   >
     <g
