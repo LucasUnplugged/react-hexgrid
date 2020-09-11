@@ -39,3 +39,6 @@ dist/
 nbproject
 .idea
 .node_history
+
+# VSC
+.history/*

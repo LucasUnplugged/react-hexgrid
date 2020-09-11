@@ -3,12 +3,12 @@
 exports[`Pattern should render correctly with custom props 1`] = `
 <defs>
   <pattern
-    height={100}
+    height={200}
     id="test2"
-    patternUnits="objectBoundingBox"
-    width={200}
-    x={0}
-    y={0}
+    patternUnits="userSpaceOnUse"
+    width={400}
+    x={-200}
+    y={-100}
   >
     <image
       height={200}
@@ -24,12 +24,12 @@ exports[`Pattern should render correctly with custom props 1`] = `
 exports[`Pattern should render correctly with default props 1`] = `
 <defs>
   <pattern
-    height={200}
+    height={400}
     id="test1"
-    patternUnits="objectBoundingBox"
-    width={100}
-    x={0}
-    y={0}
+    patternUnits="userSpaceOnUse"
+    width={200}
+    x={-100}
+    y={-200}
   >
     <image
       height={400}
